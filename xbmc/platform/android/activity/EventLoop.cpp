@@ -23,6 +23,14 @@ CEventLoop::CEventLoop(android_app* application)
   m_application->onInputEvent = inputCallback;
 }
 
+int ALooper_pollAll_mock(int timeoutMillis, int* outFd, int* outEvents, void** outData) {
+  int result;
+  do {
+    result = ALooper_pollOnce(timeoutMillis, outFd, outEvents, outData);
+  } while (result == ALOOPER_POLL_CALLBACK);
+  return result;
+}
+
 void CEventLoop::run(IActivityHandler &activityHandler, IInputHandler &inputHandler)
 {
   int ident;
@@ -36,7 +44,7 @@ void CEventLoop::run(IActivityHandler &activityHandler, IInputHandler &inputHand
   while (true)
   {
     // We will block forever waiting for events.
-    while ((ident = ALooper_pollAll(-1, NULL, &events, (void**)&source)) >= 0)
+    while ((ident = ALooper_pollAll_mock(-1, NULL, &events, (void**)&source)) >= 0)
     {
       // Process this event.
       if (source != NULL)
