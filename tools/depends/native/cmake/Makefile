@@ -12,7 +12,7 @@ include ../../download-files.include
 # configuration settings
 
 SETENV=CC="$(CC_FOR_BUILD)" CXX="$(CXX_FOR_BUILD)" LD=$(LD_FOR_BUILD) CFLAGS="$(NATIVE_CFLAGS)" \
-	CXXFLAGS="$(NATIVE_CXXFLAGS)" LDFLAGS="$(NATIVE_LDFLAGS)"
+	CXXFLAGS="$(NATIVE_CXXFLAGS) -fpermissive" LDFLAGS="$(NATIVE_LDFLAGS)"
 
 CONFIGURE=./bootstrap --prefix=$(NATIVEPREFIX) --system-curl
 ifeq ($(USE_CCACHE), yes)
