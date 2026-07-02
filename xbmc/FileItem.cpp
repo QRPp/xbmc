@@ -2528,6 +2528,8 @@ void CFileItemList::Sort(SortBy sortBy, SortOrder sortOrder, SortAttribute sortA
 void CFileItemList::Sort(SortDescription sortDescription)
 {
   if (sortDescription.sortBy == SortByFile || sortDescription.sortBy == SortBySortTitle ||
+      sortDescription.sortBy == SortByLabel || sortDescription.sortBy == SortBySize ||
+      sortDescription.sortBy == SortByDate || sortDescription.sortBy == SortByDateTaken ||
       sortDescription.sortBy == SortByOriginalTitle || sortDescription.sortBy == SortByDateAdded ||
       sortDescription.sortBy == SortByRating || sortDescription.sortBy == SortByYear ||
       sortDescription.sortBy == SortByPlaylistOrder || sortDescription.sortBy == SortByLastPlayed ||
