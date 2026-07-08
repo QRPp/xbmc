@@ -232,8 +232,10 @@ void URIUtils::Split(const std::string& strFileNameAndPath,
   // everything to the right of the directory separator
   strFileName = strFileNameAndPath.substr(i+1);
 
-  // if actual uri, ignore options
-  if (IsURL(strFileNameAndPath))
+  // if actual HTTP uri, ignore options
+  if (IsURL(strFileNameAndPath) &&
+      (IsProtocol(strFileNameAndPath, "http") ||
+       IsProtocol(strFileNameAndPath, "https")))
   {
     i = strFileName.size() - 1;
     while (i > 0)
